@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools==84.2.1", "wheel==0.48.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "saas-product-intelligence-platform"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+description = "Event-driven B2B SaaS analytics with governed metrics and experimentation"
+dependencies = ["fastapi==0.141.1", "uvicorn==0.52.1", "pydantic==2.13.4"]
+
+[project.optional-dependencies]
+dev = ["httpx==0.28.1", "pyflakes==3.4.0"]
+
+[project.scripts]
+product-simulate = "product_intelligence.simulator:main"
+product-metrics = "product_intelligence.metrics:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
