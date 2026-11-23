@@ -10,7 +10,7 @@ description = "Event-driven B2B SaaS analytics with governed metrics and experim
 dependencies = ["fastapi==0.141.1", "uvicorn==0.52.1", "pydantic==2.13.4"]
 
 [project.optional-dependencies]
-dev = ["httpx==0.28.1", "pyflakes==3.4.0"]
+dev = ["httpx==0.28.1", "pyflakes==4.1.0"]
 
 [project.scripts]
 product-simulate = "product_intelligence.simulator:main"
