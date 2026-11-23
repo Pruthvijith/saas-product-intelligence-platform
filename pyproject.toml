@@ -7,7 +7,7 @@ name = "saas-product-intelligence-platform"
 version = "0.1.0"
 requires-python = ">=3.12,<3.13"
 description = "Event-driven B2B SaaS analytics with governed metrics and experimentation"
-dependencies = ["fastapi==0.141.1", "uvicorn==0.52.1", "pydantic==2.13.4"]
+dependencies = ["fastapi==0.141.1", "uvicorn==0.52.1", "pydantic==2.14.4"]
 
 [project.optional-dependencies]
 dev = ["httpx==0.28.1", "pyflakes==3.4.0"]
