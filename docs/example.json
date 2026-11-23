@@ -1,0 +1,44 @@
+{
+  "first": {
+    "inserted": 813,
+    "retried_duplicates_ignored": 240,
+    "source": "deterministic synthetic SaaS events"
+  },
+  "replay": {
+    "inserted": 0,
+    "retried_duplicates_ignored": 240,
+    "source": "deterministic synthetic SaaS events"
+  },
+  "activation": {
+    "metric": "7d_user_activation",
+    "as_of": "2026-10-25",
+    "eligible_users": 240,
+    "activated_users": 168,
+    "feature_users_after_activation": 137,
+    "rate": 0.7
+  },
+  "retained": 76,
+  "experiment": {
+    "experiment": "onboarding-v1",
+    "arms": {
+      "control": {
+        "exposed": 61,
+        "eligible": 61,
+        "activated": 54
+      },
+      "treatment": {
+        "exposed": 59,
+        "eligible": 59,
+        "activated": 53
+      }
+    },
+    "crossover_accounts": 0,
+    "srm_p_value": 0.8551321405847059,
+    "absolute_rate_difference": 0.013059183106418515,
+    "difference_ci95": [
+      -0.10511944797779707,
+      0.1300811327369062
+    ],
+    "diagnostic": "review_interval"
+  }
+}

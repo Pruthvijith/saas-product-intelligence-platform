@@ -1,0 +1,81 @@
+Local execution | Python 3.12.14 | Linux
+
+$ python -m unittest discover -s tests -v
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+test_funnel_requires_order_and_preserves_tenant_identity (test_cohorts.CohortTests.test_funnel_requires_order_and_preserves_tenant_identity) ... ok
+test_maturity_crossover_and_pre_exposure_outcome (test_cohorts.CohortTests.test_maturity_crossover_and_pre_exposure_outcome) ... ok
+test_retention_excludes_day_fourteen_and_immature_cohorts (test_cohorts.CohortTests.test_retention_excludes_day_fourteen_and_immature_cohorts) ... ok
+test_activation_window_and_maturation (test_product_intelligence.PlatformTests.test_activation_window_and_maturation) ... ok
+test_contract_rejects_naive_datetime_and_unknown_fields (test_product_intelligence.PlatformTests.test_contract_rejects_naive_datetime_and_unknown_fields) ... ok
+test_deduplicated_ingestion_and_late_partitions (test_product_intelligence.PlatformTests.test_deduplicated_ingestion_and_late_partitions) ... ok
+test_http_idempotency (test_product_intelligence.PlatformTests.test_http_idempotency) ... ok
+test_simulator_and_experiment (test_product_intelligence.PlatformTests.test_simulator_and_experiment) ... ok
+test_stable_account_randomization_and_srm (test_product_intelligence.PlatformTests.test_stable_account_randomization_and_srm) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.069s
+
+OK
+exit 0
+
+$ python -m pyflakes src tests scripts
+
+exit 0
+
+$ python -m compileall -q src scripts tests
+
+exit 0
+
+$ python scripts/demo.py
+{
+  "first": {
+    "inserted": 813,
+    "retried_duplicates_ignored": 240,
+    "source": "deterministic synthetic SaaS events"
+  },
+  "replay": {
+    "inserted": 0,
+    "retried_duplicates_ignored": 240,
+    "source": "deterministic synthetic SaaS events"
+  },
+  "activation": {
+    "metric": "7d_user_activation",
+    "as_of": "2026-10-25",
+    "eligible_users": 240,
+    "activated_users": 168,
+    "feature_users_after_activation": 137,
+    "rate": 0.7
+  },
+  "retained": 76,
+  "experiment": {
+    "experiment": "onboarding-v1",
+    "arms": {
+      "control": {
+        "exposed": 61,
+        "eligible": 61,
+        "activated": 54
+      },
+      "treatment": {
+        "exposed": 59,
+        "eligible": 59,
+        "activated": 53
+      }
+    },
+    "crossover_accounts": 0,
+    "srm_p_value": 0.8551321405847059,
+    "absolute_rate_difference": 0.013059183106418515,
+    "difference_ci95": [
+      -0.10511944797779707,
+      0.1300811327369062
+    ],
+    "diagnostic": "review_interval"
+  }
+}
+exit 0
+
+Second independent demo run: matching decision outputs (elapsed timings excluded).
+
+$ python scripts/http_smoke.py
+{"first": 202, "retry": {"accepted": true, "duplicate": true}, "conflict": 422, "activation": {"metric": "7d_user_activation", "as_of": "2026-10-10", "eligible_users": 1, "activated_users": 0, "feature_users_after_activation": 0, "rate": 0.0}}
+exit 0
